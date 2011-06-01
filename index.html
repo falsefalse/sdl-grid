@@ -6,6 +6,7 @@
   <title>Color Grid — test task for SDL</title>
 
   <style>
+    /* reset things */
     * {
       margin: 0; padding: 0;
     }
@@ -17,9 +18,13 @@
     #wholething {
       border-collapse: collapse;
     }
-    td {
-      border: 1px solid red;
-    }
+      #wholething td {
+        /*
+          give cells some small width
+          it makes them distribute width equally in IE7
+        */
+        width: 1em;
+      }
   </style>
 </head>
 <body>

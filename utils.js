@@ -29,7 +29,7 @@ _ = {
   create : function(tag) {
     return document.createElement(tag);
   },
-  rgb : function() {
-
+  rnd : function(bound) {
+    return Math.ceil(Math.random() * bound)
   }
 }
