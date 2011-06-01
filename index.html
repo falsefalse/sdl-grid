@@ -15,6 +15,33 @@
       height: 100%;
     }
 
+    .controls {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      padding: 5px 8px;
+      font: normal 13px/1.25 Helvetica, Arial, sans-serif;
+      border: 1px solid #444;
+      background-color: #FFF;
+    }
+      .controls label {
+        position: relative;
+        display: block;
+        margin: .75em 0;
+        padding-right: 5em;
+      }
+        .controls input {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 3em;
+          vertical-align: middle;
+          text-align: right;
+        }
+      .controls button {
+        padding: 1px 4px;
+      }
+
     #wholething {
       border-collapse: collapse;
     }
@@ -28,6 +55,19 @@
   </style>
 </head>
 <body>
+  <fieldset id="controls" class="controls">
+    <label for="rows">Rows
+      <input name="rows" id="rows" value="5">
+    </label>
+    <label for="cols">Columns
+      <input name="cols" id="cols" value="5">
+    </label>
+    <label for="idle">Timeout, msec
+      <input name="idle" id="idle" value="2000">
+    </label>
+    <button>Apply</button>
+  </fieldset>
+
   <table id="wholething"></table>
 
   <script src="utils.js"></script>
