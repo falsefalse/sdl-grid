@@ -97,6 +97,8 @@
         el_cols = _.id("cols"),
         el_idle = _.id("idle");
 
+    el_rows.focus();
+
     function read_inputs() {
       var options = {};
       el_rows && ( options.rows = el_rows.value );
