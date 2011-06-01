@@ -70,7 +70,10 @@ var Grid = function(node, options) {
 
   this.update = function(updated) {
     // remove rendered nodes and references to them
-    node.innerHTML = '';
+    // IE can't modify the tbody innerHTML, so use DOM methods
+    var parent = node.parentNode;
+    parent.removeChild(node);
+    node = parent.appendChild(_.create('tbody'));
     cells = [];
 
     // produce new options from passed updated options
