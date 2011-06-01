@@ -51,5 +51,21 @@ var Grid = function(node, options) {
     node.appendChild(fragment)
   }
 
+  this.repaint = function() {
+    var i = cells.length;
+    while (i--) {
+      paint(cells[i]);
+    }
+  };
+
+  // set up repaint interval
+  (function loop(self)  {
+    self.timeout = window.setTimeout(function() {
+      self.repaint();
+
+      loop(self);
+    }, options.idle)
+  })(this);
+
   this.draw()
 }
