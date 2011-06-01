@@ -19,7 +19,7 @@
       position: absolute;
       top: 15px;
       left: 15px;
-      padding: 5px 8px;
+      padding: 8px;
       font: normal 13px/1.25 Helvetica, Arial, sans-serif;
       border: 1px solid #444;
       background-color: #FFF;
@@ -27,7 +27,7 @@
       .controls label {
         position: relative;
         display: block;
-        margin: .75em 0;
+        margin: 0 0 .75em;
         padding-right: 5em;
       }
         .controls input {
@@ -41,6 +41,15 @@
       .controls button {
         padding: 1px 4px;
       }
+      .controls p {
+        margin: 1em 0;
+        font: normal 12px/1.5 Consolas, Monaco, monospace;
+      }
+        .controls p em {
+          font-family: Helvetica, Arial, sans-serif;
+          font-style: normal;
+          border-bottom: 1px dashed #000;
+        }
 
     #wholething {
       border-collapse: collapse;
@@ -66,6 +75,10 @@
       <input name="idle" id="idle" value="2000">
     </label>
     <button type="submit" id="apply">Apply</button>
+    <p>
+      <em title="Time to paint the cells, each loop">Last paint time</em>: <span id="paint_time">0</span>ms <br>
+      <em title="Time to render grid, once Apply is clicked">Draw time</em>: <span id="draw_time">0</span>ms
+    </p>
   </form>
 
   <table id="wholething"></table>
@@ -74,6 +87,12 @@
   <script src="grid.js"></script>
   <script>
   _.listen(window, 'DOMContentLoaded', function() {
+    window.log_display = {
+      l : new _.Log(),
+      paint : _.id('paint_time'),
+      draw  : _.id('draw_time')
+    }
+
     var el_rows = _.id("rows"),
         el_cols = _.id("cols"),
         el_idle = _.id("idle");

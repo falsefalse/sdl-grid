@@ -32,4 +32,22 @@ _ = {
   rnd : function(bound) {
     return Math.ceil(Math.random() * bound)
   }
+};
+
+_.Log = function() {
+  var log = {};
+
+  this.time = function(key) {
+    log[key] = {
+      start : ( new Date() ).getTime()
+    }
+  }
+  this.end = function(key, node) {
+    log[key] && (log[key].end = ( new Date() ).getTime());
+    if (node) {
+      node.innerHTML = ( log[key].end - log[key].start );
+    } else {
+      return log[key].end - log[key].start;
+    }
+  }
 }

@@ -35,6 +35,8 @@ var Grid = function(node, options) {
 
 
   this.draw = function(rows, cols) {
+    log_display.l.time('draw')
+
     for (var i = 0; i < options.rows; i++) {
       var row = _.create('tr');
 
@@ -49,13 +51,20 @@ var Grid = function(node, options) {
       fragment.appendChild(row);
     }
     node.appendChild(fragment);
+
+    log_display.l.end('draw', log_display.draw)
   };
 
   this.repaint = function() {
+    log_display.l.time('repaint');
+
     var i = cells.length;
     while (i--) {
       paint(cells[i]);
     }
+
+
+    log_display.l.end('repaint', log_display.paint)
   };
 
   // set up repaint interval
