@@ -73,7 +73,17 @@
   <script src="utils.js"></script>
   <script src="grid.js"></script>
   <script>
-    var g = new Grid(_.id('wholething'));
+  (function() {
+    var el_rows = _.id("rows"),
+        el_cols = _.id("cols"),
+        el_idle = _.id("idle");
+    var options = {};
+    el_rows && ( options.rows = el_rows.value );
+    el_cols && ( options.cols = el_cols.value );
+    el_idle && ( options.idle = el_idle.value );
+
+    var g = new Grid(_.id('wholething'), options);
+  })()
   </script>
 </body>
 </html>
