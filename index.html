@@ -73,7 +73,7 @@
   <script src="utils.js"></script>
   <script src="grid.js"></script>
   <script>
-  (function() {
+  _.listen(window, 'DOMContentLoaded', function() {
     var el_rows = _.id("rows"),
         el_cols = _.id("cols"),
         el_idle = _.id("idle");
@@ -97,7 +97,7 @@
       return false;
     });
 
-  })()
+  })
   </script>
 </body>
 </html>
