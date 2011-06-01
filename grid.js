@@ -33,23 +33,23 @@ var Grid = function(node, options) {
     td.style.backgroundColor = rgb_color;
   }
 
-  this.draw = function() {
+
+  this.draw = function(rows, cols) {
     for (var i = 0; i < options.rows; i++) {
       var row = _.create('tr');
 
       for (var k = 0; k < options.cols; k++) {
         var td = _.create('td');
         row.appendChild(td);
+        // store reference to each node, useful for painting
         cells.push(td);
 
         paint(td);
       }
-
       fragment.appendChild(row);
     }
-
     node.appendChild(fragment)
-  }
+  };
 
   this.repaint = function() {
     var i = cells.length;
@@ -59,13 +59,31 @@ var Grid = function(node, options) {
   };
 
   // set up repaint interval
-  (function loop(self)  {
+  function loop(self)  {
     self.timeout = window.setTimeout(function() {
       self.repaint();
 
       loop(self);
     }, options.idle)
-  })(this);
+  };
+  loop(this);
+
+  this.update = function(updated) {
+    // remove rendered nodes and references to them
+    node.innerHTML = '';
+    cells = [];
+
+    // produce new options from passed updated options
+    // reuse old values if no new have been passed
+    options = _.extend(updated, options);
+
+    // render new grid
+    this.draw();
+
+    // clear existing loop and set up new loop with new timeout
+    window.clearTimeout(this.timeout);
+    loop(this);
+  };
 
   this.draw()
 }

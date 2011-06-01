@@ -65,7 +65,7 @@
     <label for="idle">Timeout, msec
       <input name="idle" id="idle" value="2000">
     </label>
-    <button>Apply</button>
+    <button id="apply">Apply</button>
   </fieldset>
 
   <table id="wholething"></table>
@@ -77,12 +77,22 @@
     var el_rows = _.id("rows"),
         el_cols = _.id("cols"),
         el_idle = _.id("idle");
-    var options = {};
-    el_rows && ( options.rows = el_rows.value );
-    el_cols && ( options.cols = el_cols.value );
-    el_idle && ( options.idle = el_idle.value );
 
-    var g = new Grid(_.id('wholething'), options);
+    function read_inputs() {
+      var options = {};
+      el_rows && ( options.rows = el_rows.value );
+      el_cols && ( options.cols = el_cols.value );
+      el_idle && ( options.idle = el_idle.value );
+
+      return options;
+    }
+
+    var g = new Grid(_.id('wholething'), read_inputs());
+
+    _.listen(_.id('apply'), 'click', function() {
+      g.update(read_inputs())
+    });
+
   })()
   </script>
 </body>
