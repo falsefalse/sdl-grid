@@ -23,9 +23,6 @@ var Grid = function(node, options) {
     idle : 1000
   });
 
-  var fragment = document.createDocumentFragment();
-  var cells = [];
-
   function paint (td) {
     var rgb_color = 'rgb('
                   + [_.rnd(255), _.rnd(255), _.rnd(255)].join(', ')
@@ -33,9 +30,11 @@ var Grid = function(node, options) {
     td.style.backgroundColor = rgb_color;
   }
 
-
+  var cells = [];
   this.draw = function(rows, cols) {
     log_display.l.time('draw')
+
+    var fragment = document.createDocumentFragment();
 
     for (var i = 0; i < options.rows; i++) {
       var row = _.create('tr');
