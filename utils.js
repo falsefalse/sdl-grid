@@ -3,11 +3,6 @@
 _ = {
   listen : function(element, type, callback) {
     if ('attachEvent' in element) {
-      // hacky, but we have no images,
-      // and i think it'll do for 3h no library task
-      if (type === 'DOMContentLoaded') {
-        type = 'load';
-      }
       element.attachEvent('on' + type, callback);
     } else {
       // we don't want to use useCapture now

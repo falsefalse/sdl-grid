@@ -48,7 +48,7 @@ var Grid = function(node, options) {
       }
       fragment.appendChild(row);
     }
-    node.appendChild(fragment)
+    node.appendChild(fragment);
   };
 
   this.repaint = function() {
