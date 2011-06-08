@@ -110,7 +110,7 @@
 
     var g = new Grid(_.id('wholething'), read_inputs());
 
-    _.listen(_.id('controls'), 'submit', function() {
+    _.listen(_.id('controls'), 'submit', function(event) {
       if (typeof event.preventDefault == 'function') {
         event.preventDefault()
       }
